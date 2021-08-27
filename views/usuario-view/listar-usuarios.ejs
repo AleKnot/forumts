@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listar Usuário</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Listar Usuário</h1>
+    <p>Welcome to Listar Usuário</p>
+
+    <%- include('../partials/menu.ejs') %>
+
+    <br><br>
+
+    <div>
+      <% usuarios.forEach(usuario => { %>
+        Nome: <%=usuario.nome%><br>
+        Usuario: <%=usuario.usuario%><br>
+        Email: <%=usuario.email%><br>
+        Senha: <%=usuario.senha%><br>
+        Data Nascimento: <%=usuario.data_nascimento%><br>
+        Data Cadastro: <%=usuario.data_cadastro%><br>
+        Foto: <%=usuario.foto%><br>
+
+        <a href="/usuario/editar/<%=usuario.idusuario%>">Editar</a>
+        <a href="/usuario/deletar/<%=usuario.idusuario%>">Deletar</a>
+        <hr><br>
+      <% }) %>
+  </div>
+    
+  </body>
+</html>
+
+
+<!-- nome, usuario, email, senha, data_nascimento,foto -->
