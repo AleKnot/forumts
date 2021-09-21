@@ -1,4 +1,6 @@
-module.exports = (sequelize, DataTypes) => sequelize.define('Usuarios', {
+module.exports = (sequelize, DataTypes) => {
+  
+  const Usuario = sequelize.define('Usuario', {
     idusuario: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -14,5 +16,14 @@ module.exports = (sequelize, DataTypes) => sequelize.define('Usuarios', {
   },    {
     tableName: 'usuarios',
     timestamps: false
-}
-  );
+})
+
+Usuario.associate = models => {
+  Usuario.hasMany(models.Thread, {
+      as: 'threads',
+      foreignKey: 'usuario_idusuario'
+    });
+  }
+
+  return Usuario;
+};

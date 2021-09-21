@@ -12,6 +12,16 @@
 
     <br><br>
 
+    <form action="/usuario/pesquisar" method="POST">
+      <input type="text" class="form-control web-search-box" placeholder="search" name="keyword" value=''></div>
+      <input type="submit" value="send">
+      </form>
+
+      <% if (message) { %>
+        <h2><%=message%></h2>
+        <% } %>
+
+
     <div>
       <% usuarios.forEach(usuario => { %>
         Nome: <%=usuario.nome%><br>
@@ -21,7 +31,9 @@
         Data Nascimento: <%=usuario.data_nascimento%><br>
         Data Cadastro: <%=usuario.data_cadastro%><br>
         Foto: <%=usuario.foto%><br>
-
+        <img src="/imagens/<%=usuario.foto%>">
+        
+        <br> 
         <a href="/usuario/editar/<%=usuario.idusuario%>">Editar</a>
         <a href="/usuario/deletar/<%=usuario.idusuario%>">Deletar</a>
         <hr><br>
@@ -30,6 +42,3 @@
     
   </body>
 </html>
-
-
-<!-- nome, usuario, email, senha, data_nascimento,foto -->

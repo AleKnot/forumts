@@ -5,11 +5,74 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__cover {
+    height: 150px;
+    width: 100%;
+}
+
+.card__content {
+    /* Take available height */
+    flex: 1;
+}
+</style>
+
     <h1>Cadastrar Thread</h1>
     <p>Welcome to Cadastrar Thread</p>
 
     <%- include('../partials/menu.ejs') %>
 
+      <% if (message) { %>
+      <h2><%=message%></h2>
+      <% } %>
+
+
+
+  <div>
+    <% threads.forEach(thread => { %>
+
+      <div class="card">
+        <!-- Cover -->
+        <div class="card__cover">
+            <h1>Titulo: <%=thread.titulo%><br></h1>
+            
+        </div>
+    
+        <!-- Content -->
+        <div class="card__content">
+          <img src="/imagens/<%=thread.foto%>">
+          <br>
+            Assunto: <%=thread.assunto%><br>
+            Descricao: <%=thread.descricao%><br>
+            usuariosIdusuario: <%=thread.usuario_idusuario%><br>
+            
+            <img id="output"/>
+            <!-- <pre><%= JSON.stringify(thread.usuario)%></pre> -->
+            <!-- <pre><%= JSON.stringify(thread.usuario.nome)%></pre> -->
+
+        </div>
+        
+    </div>
+
+      
+      <br> 
+      <a href="/thread/like/<%=thread.idthread%>">Like</a>
+      <br> <br> 
+
+      <a href="/thread/dislike/<%=thread.idthread%>">Dislike</a>
+
+      <br> 
+      <a href="/thread/comentarios/<%=thread.idthread%>">Comentários</a>
+      <br> <br> 
+
+      <hr><br>
+    <% }) %>
+</div>
 
   </body>
 </html>

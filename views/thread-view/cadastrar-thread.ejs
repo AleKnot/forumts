@@ -9,6 +9,84 @@
     <p>Welcome to Cadastrar Thread</p>
 
     <%- include('../partials/menu.ejs') %>
-    
+
+    <% if (typeof message !== 'undefined') { %>
+      <h1> <%= message %></h1>
+      <% } %>
+
+      <% if (typeof usuario !== 'undefined') { %>
+        <h1> <%= usuario.nome %></h1>
+        <% } %>
+
+    <main>
+
+      <div>
+          <h1>Welcome - Cadastrar Thread</h1>
+          <!-- <label for="">Bem vindo ao Nimix</label> -->
+      </div>
+
+      <div>
+          <h2>Add a new Thread</h2>
+      </div>
+
+      <% if (typeof message !== 'undefined') { %>
+        <h1> <%= message %></h1>
+        <% } %>
+
+      
+  <section class="container">
+
+    <br>
+
+      <div class="contato">
+      
+        <form action="/thread/cadastrar" method="POST" encType="multipart/form-data">
+          
+              <div class="form_fields">
+
+                  <label for="titulo">Titulo</label>
+                  <input type="text" name="titulo" id="titulo" value="">
+                  <br>
+                  <label for="assunto">Assunto</label>
+                  <input type="text" name="assunto" id="assunto" value="">
+                  <br>
+                  <label for="descricao">Descrição</label>
+                  <input type="text" name="descricao" id="descricao" value="">
+                  <br>
+                  <label for="foto">Select image:</label>
+                  <input type="file" id="img" name="foto" accept="image/*" onchange="loadFile(event)">
+                  <br>
+                  <br>
+                 
+              </div>
+
+              
+              <button class="button_login">Add Thread</button>
+              
+          </form>
+          
+      </div>
+      </div>
+      
+      <br>
+      <br>
+      
+      <img id="output"/>
+
+      <br>
+      <br>
+
   </body>
+
+  <script>
+    var loadFile = function(event) {
+      var output = document.getElementById('output');
+      output.src = URL.createObjectURL(event.target.files[0]);
+      output.onload = function() {
+        URL.revokeObjectURL(output.src) // free memory
+      }
+    };
+  </script>
+
+
 </html>

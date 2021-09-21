@@ -16,25 +16,47 @@
       <div>
           <h2>faça seu login</h2>
       </div>
-  <section class="container">
 
+      <br>
+
+
+      <div>
+        <table>
+          <tr>
+            <th>Quantidade de MSG</th>
+            <th>Assuntos Rolando</th>
+            <th>Quatidade de Posts</th>
+          </tr>
+          <tr>
+            <td>857...</td>
+            <td>34...</td>
+            <td>132...</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <br>
+      <br>
+      <br>
+
+  <section class="container">
+    <% if (typeof message !== 'undefined') { %>
+      <h1> <%= message %></h1>
+      <% } %>
       <div class="contato">
-          <form action="" method="post">
+          <form action="/login" method="post">
               <div class="form_fields">
-                  <label for="email">E-mail</label>
-                  <input type="email" name="email" id="email">
+                  <label for="usuario">Usuário</label>
+                  <input type="text" name="usuario" id="usuario">
 
                   <label for="senha">Senha</label>
                   <input type="password" name="senha" id="senha">
               </div>
-              <a href="#">Esqueceu a senha?</a>
-
+              
+              <button class="button_login">Login</button>
           </form>
-          
-              <button class="button_login">Go >></button>
-         
-
-
+          <a href="#">Esqueceu a senha?</a>
 
       </div>
     

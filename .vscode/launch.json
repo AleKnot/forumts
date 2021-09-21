@@ -8,13 +8,14 @@
             "port": 9229,
             "restart": true,
             "name": "Launch Debug"
-        },
-        {
-            "type": "node-terminal",
-            "name": "Run Script: debug",
-            "request": "launch",
-            "command": "npm run debug",
-            "cwd": "${workspaceFolder}"
         }
+        // ,
+        // {
+        //     "type": "node-terminal",
+        //     "name": "Run Script: debug",
+        //     "request": "launch",
+        //     "command": "npm run debug",
+        //     "cwd": "${workspaceFolder}"
+        // }
     ]
 }
