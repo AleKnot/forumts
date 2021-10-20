@@ -71,3 +71,13 @@ exports.buscarUsuarioPorId = (idusuario) =>
 exports.deletarUsuario = idusuario => db.Usuario.destroy({
    where: { idusuario }
    });
+
+
+exports.contarUsuariosFelizes = () =>
+  db.Usuario.count({
+    where: {
+      idusuario: {
+        [Op.gt]: 1
+      }
+    }
+  });

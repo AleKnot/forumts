@@ -172,5 +172,27 @@ router.post('/pesquisar', async (req, res, next) => {
 });
 
 
+router.get('/contarUsuariosFelizes', function(req, res, next) {
+  
+  try {
+    const contarUsuariosFelizes = usuariosController.contarUsuariosFelizes().then(ret_val => {
+    
+    return res.status(200).json({
+      qtd_msg: ret_val
+    });
+  
+   });
+    
+  } catch (error) {
+    return res.status(400).json({
+      error: true,
+      msg: "Erro na requisição tente novamente!",
+    });
+  }
+
+ 
+});
+
+
 module.exports = router;
 

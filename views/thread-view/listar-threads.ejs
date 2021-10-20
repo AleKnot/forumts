@@ -23,9 +23,9 @@
 </style>
 
     <h1>Cadastrar Thread</h1>
-    <p>Welcome to Cadastrar Thread</p>
+    <p>Welcome to Listar Thread</p>
 
-    <%- include('../partials/menu.ejs') %>
+    <%- include('../partials/menu-logado.ejs') %>
 
       <% if (message) { %>
       <h2><%=message%></h2>
@@ -52,12 +52,18 @@
             usuariosIdusuario: <%=thread.usuario_idusuario%><br>
             
             <img id="output"/>
-            <!-- <pre><%= JSON.stringify(thread.usuario)%></pre> -->
-            <!-- <pre><%= JSON.stringify(thread.usuario.nome)%></pre> -->
+
 
         </div>
         
     </div>
+
+    <br> <br> 
+    <pre>LIKES: <%=likes%></pre>
+    <pre>DISLIKES: <%=dislikes%></pre>
+    
+  <!-- <pre><%=JSON.stringify(threads,null,2)%></pre> -->
+  
 
       
       <br> 

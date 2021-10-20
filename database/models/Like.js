@@ -13,6 +13,18 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'likes',
     timestamps: false
   });
+
+  Like.associate = models => {
+    Like.belongsTo(models.Thread, {
+        as: 'thread',
+        foreignKey: 'idthread'
+      })
+      Like.belongsTo(models.Usuario, {
+        as: 'usuario',
+        foreignKey: 'idusuario'
+      })
+  
+    }
   
     return Like;
   };

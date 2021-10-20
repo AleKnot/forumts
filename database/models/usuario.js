@@ -1,5 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-  
   const Usuario = sequelize.define('Usuario', {
     idusuario: {
         type: DataTypes.INTEGER,
@@ -21,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
 Usuario.associate = models => {
   Usuario.hasMany(models.Thread, {
       as: 'threads',
-      foreignKey: 'usuario_idusuario'
+      foreignKey: 'idusuario'
     });
   }
 

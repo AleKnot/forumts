@@ -7,11 +7,7 @@
   <body>
     <h1>Visualizar Thread</h1>
     
-    <%- include('../partials/menu.ejs') %>
-
-    <% if (typeof message !== 'undefined') { %>
-      <h1> <%= message %></h1>
-      <% } %>
+    <%- include('../partials/menu-logado.ejs') %>
 
       <% if (typeof usuario !== 'undefined') { %>
         <h1> <%= usuario.nome %></h1>
@@ -55,6 +51,10 @@
                   <span><%=thread.descricao%></span>
                   <br>
                   <br> 
+                  <hr>
+
+
+
                   <a href="/thread/like/<%=thread.idthread%>">Like</a>
                   <br> <br> 
             
@@ -63,9 +63,10 @@
                   <br> 
                   <a href="/thread/comentarios/<%=thread.idthread%>">Comentários</a>
                   <br> <br> 
+                  <h2>LIKESSS: <%- likes%> </h2>
+                  <h2>disLIKESSS: <%- dislikes%> </h2>
             
                   <hr><br>
-                  
                   
                   <br>
                   <br>

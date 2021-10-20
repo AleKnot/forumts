@@ -18,3 +18,6 @@ exports.atualizarUsuarioPorId = ({ idusuario, nome, usuario, email, senha, data_
 exports.deletarUsuario = (idusuario) => usuarioModel.deletarUsuario(idusuario);
 
 exports.efetuarLogin = (usuario, senha) => usuarioModel.efetuarLogin(usuario, senha);
+
+exports.contarUsuariosFelizes = () =>
+  usuarioModel.contarUsuariosFelizes();

@@ -7,7 +7,6 @@ const likeController = require('../Controller/like-controller')
 const comentarioController = require('../Controller/comentario-controller')
 
 
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
       cb(null, 'imagens-uploaded/')
@@ -39,14 +38,19 @@ module.exports = function (req, res, next) {
   }
 };
 
-/* GET login listing. */
+
 router.get('/listar', async (req, res, next) => {
 
+  // const threads = await threadsController.listarTodosComLike();
   const threads = await threadsController.listarTodos();
 
   const message = ''
-  // res.send('respond with a resource - Login');
-  res.render(".\\thread-view\\listar-threads",{message, threads})
+
+  const likes = 1;
+  const dislikes =2;
+
+  res.render(".\\thread-view\\listar-threads",{message, threads,likes, dislikes})
+
 });
 
 router.get('/cadastrar', function(req, res, next) {
@@ -59,7 +63,7 @@ router.get('/cadastrar', function(req, res, next) {
 
 
 router.post('/cadastrar', upload.single('foto') , async (req, res) =>{
-  //({ titulo, assunto, descricao,foto, data_criacao, usuario_idusuario })
+  //({ titulo, assunto, descricao,foto, data_criacao, idusuario })
 
   const { titulo, assunto, descricao} = req.body;
 
@@ -72,11 +76,11 @@ router.post('/cadastrar', upload.single('foto') , async (req, res) =>{
 
   const usuario = req.session;
 
-  const usuario_idusuario = usuario.sessaoUsuario.idusuario;
+  const idusuario = usuario.sessaoUsuario.idusuario;
 
-  console.log(titulo + ' - ' + assunto + ' - ' + descricao + ' - ' +  data_criacao + ' - ' + foto + ' - ' + usuario_idusuario)
+  console.log(titulo + ' - ' + assunto + ' - ' + descricao + ' - ' +  data_criacao + ' - ' + foto + ' - ' + idusuario)
 
-  await threadsController.cadastrarThread({ titulo, assunto, foto, descricao, usuario_idusuario, data_criacao });
+  await threadsController.cadastrarThread({ titulo, assunto, foto, descricao, idusuario, data_criacao });
 
   console.log('Chegou no Routes - Thread!!')
 
@@ -131,9 +135,11 @@ router.get('/comentarios/:idthread', async (req, res) => {
 
   const { idthread } = req.params;
 
-  console.log('entrou no comentários id da thred >>>> ' + idthread );
+  // console.log('entrou no comentários id da thred >>>> ' + idthread );
 
-  const message = ('entrou no comentários id da thred >>>> ' + idthread );
+  // const message = ('entrou no comentários id da thred >>>> ' + idthread );
+  const message = null;
+
   
   const threads = await threadsController.buscarThreadPorId(idthread);
 
@@ -147,9 +153,13 @@ router.get('/comentarios/:idthread', async (req, res) => {
 
   console.log('LIKES COUNT ____------>>>>>>> '+dislikes);
 
+  
+  // threads.like = likes;
+
+  console.log(threads)
 
 
-  res.render(".\\thread-view\\thread-coment-thread",{message, threads,comentarios})
+  res.render(".\\thread-view\\thread-coment-thread",{message, threads,likes, dislikes,comentarios})
 
 });
 
@@ -182,6 +192,51 @@ router.post('/comentarios/adicionar', async (req, res) => {
   // res.render(".\\thread-view\\thread-coment-thread\\"+idthread)
 
 
+});
+
+
+router.get('/contarComentarios', function(req, res, next) {
+  console.log('entrou no contar Thread Router Thread mtf')
+
+  try {
+    const contarComentarios = comentarioController.contarTodosComentarios().then(ret_val => {
+    
+    return res.status(200).json({
+      qtd_msg: ret_val
+    });
+  
+   });
+    
+  } catch (error) {
+    return res.status(400).json({
+      error: true,
+      msg: "Erro na requisição tente novamente!",
+    });
+  }
+
+ 
+});
+
+
+router.get('/contarThreads', function(req, res, next) {
+  
+  try {
+    const contarThreads = threadsController.contarTodasThreads().then(ret_val => {
+    
+    return res.status(200).json({
+      qtd_msg: ret_val
+    });
+  
+   });
+    
+  } catch (error) {
+    return res.status(400).json({
+      error: true,
+      msg: "Erro na requisição tente novamente!",
+    });
+  }
+
+ 
 });
 
 

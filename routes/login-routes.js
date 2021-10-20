@@ -27,7 +27,7 @@ router.post("/", async (req, res, next) => {
     
   // res.render("index", {message: 'Login aceito - Bien Venido!'});
 
-  res.redirect("/");
+  res.redirect("/thread/listar");
   
   } catch (error) {
 
@@ -36,11 +36,10 @@ router.post("/", async (req, res, next) => {
 
 });
 
-router.post("/logout", function (req, res, next) {
-  const { session } = req;
-
-  delete session.userId;
-
+router.get('/logout', function (req, res) {
+  console.log('logoutttt')
+  req.session.destroy();
+  // res.send("logout success!");
   res.redirect("/");
 });
 

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   assunto: { type: DataTypes.STRING, allowNull: false },
   foto: { type: DataTypes.STRING, allowNull: false },
   descricao: {type: DataTypes.STRING, allowNull: false},
-  usuario_idusuario: {type: DataTypes.INTEGER, allowNull: false},
+  idusuario: {type: DataTypes.INTEGER, allowNull: false},
   data_criacao: { type: DataTypes.DATE, allowNull: false }
   
 },    {
@@ -19,10 +19,14 @@ module.exports = (sequelize, DataTypes) => {
 
 Thread.associate = models => {
   Thread.belongsTo(models.Usuario, {
-      as: 'usuario',
-      foreignKey: 'usuario_idusuario'
+      as: 'usuarioFromThread',
+      foreignKey: 'idusuario'
     });
-
+  
+  Thread.hasMany(models.Like, {
+    as: 'likesFromThread',
+    foreignKey: 'idthread'
+  })
     
   }
 

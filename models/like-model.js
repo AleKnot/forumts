@@ -11,7 +11,7 @@ exports.listarTodos = () =>
   exports.buscarLikePorThreadId = (idthread,like) => 
     db.Like.count({
       where: {
-        idthread: idthread,
-        like: like
+        idthread,
+        like
       }
     });

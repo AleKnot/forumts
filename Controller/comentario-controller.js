@@ -6,4 +6,5 @@ comentarioModel.cadastrarComentario({ texto, data_comentario, idthread, idusuari
 exports.buscarComentarioPorThreadId = (idthread) =>
 comentarioModel.buscarComentarioPorThreadId(idthread);
 
-
+exports.contarTodosComentarios = () => 
+comentarioModel.contarTodosComentarios();
