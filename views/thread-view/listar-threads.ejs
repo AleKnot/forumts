@@ -1,28 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cadastrar Thread</title>
+    <title>Listar Thread's</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-<style>
-  .card {
-    display: flex;
-    flex-direction: column;
-}
 
-.card__cover {
-    height: 150px;
-    width: 100%;
-}
 
-.card__content {
-    /* Take available height */
-    flex: 1;
-}
-</style>
-
-    <h1>Cadastrar Thread</h1>
+    <h1>Listar Thread</h1>
     <p>Welcome to Listar Thread</p>
 
     <%- include('../partials/menu-logado.ejs') %>
@@ -37,46 +22,37 @@
     <% threads.forEach(thread => { %>
 
       <div class="card">
-        <!-- Cover -->
+      
         <div class="card__cover">
             <h1>Titulo: <%=thread.titulo%><br></h1>
             
         </div>
-    
-        <!-- Content -->
+
         <div class="card__content">
           <img src="/imagens/<%=thread.foto%>">
           <br>
+            id da Thread mtf: <%=thread.idthread%><br>
             Assunto: <%=thread.assunto%><br>
             Descricao: <%=thread.descricao%><br>
-            usuariosIdusuario: <%=thread.usuario_idusuario%><br>
-            
-            <img id="output"/>
+            usuariosIdusuario: <%=thread.idusuario%><br>
+            <pre>LIKES: <%=thread.likes%></pre>   
 
+            <img id="output"/>
 
         </div>
         
     </div>
 
-    <br> <br> 
-    <pre>LIKES: <%=likes%></pre>
-    <pre>DISLIKES: <%=dislikes%></pre>
-    
-  <!-- <pre><%=JSON.stringify(threads,null,2)%></pre> -->
-  
-
+    <pre><%=JSON.stringify(threads,null,2)%></pre>
       
       <br> 
       <a href="/thread/like/<%=thread.idthread%>">Like</a>
-      <br> <br> 
-
-      <a href="/thread/dislike/<%=thread.idthread%>">Dislike</a>
-
-      <br> 
+      <br>
       <a href="/thread/comentarios/<%=thread.idthread%>">Comentários</a>
-      <br> <br> 
+      <br>
 
-      <hr><br>
+      <hr>
+      <br>
     <% }) %>
 </div>
 

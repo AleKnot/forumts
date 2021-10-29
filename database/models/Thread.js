@@ -26,7 +26,7 @@ Thread.associate = models => {
   Thread.hasMany(models.Like, {
     as: 'likesFromThread',
     foreignKey: 'idthread'
-  })
+  });
     
   }
 

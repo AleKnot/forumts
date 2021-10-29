@@ -3,6 +3,7 @@
   <head>
   <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
  
+ 
   <script src="/javascripts/script-home.js"></script>
   <script src="/javascripts/script-home-pokemon.js"></script>
     
@@ -10,7 +11,7 @@
   </head>
   <body>
 
-    <h1>Index - Página inicial</h1>
+    <h1>ForumTs - Página inicial</h1>
     <%- include('./partials/menu.ejs') %>
 
     <% if (typeof message !== 'undefined') { %>
@@ -38,13 +39,11 @@
         <span id="threads_rolando"></span>
 
         <br>
-        <br>
-        <br>
-
 
         <div class="container">
-          <h1>who's that pokemon</h1>
+          <div class="whos_pokemon">who's that pokemon</div>
           <ul data-js="pokedex" class="pokedex"></ul>
+          <br>
         </div>
 
 

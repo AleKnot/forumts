@@ -1,4 +1,7 @@
 // import express from 'express';
+// window.setTimeout(function () {
+//   window.location.reload();
+// }, 5000);
 
 async function carregaPaginaInicial(){
 

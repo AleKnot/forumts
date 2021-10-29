@@ -1,50 +1,3 @@
-// setInterval(carregaPaginaInicial(), 1000)
-
-// const { response } = require("express");
-
-// // const { response } = require("express");
-
-// async function carregaPaginaInicial(){
-
-//   try {
-//     await axios.get('http://localhost:3000/thread/contarComentarios').then((response) => {
-
-//     const span = document.getElementById('qtd_msg');
-  
-//     span.innerText = response.data.qtd_msg;
-//     });
-  
-//   } catch (error) {
-//     console.log(error)
-//   }
-
-//   try {
-//     await axios.get('http://localhost:3000/thread/contarThreads').then((response) => {
-
-//     const span = document.getElementById('threads_rolando');
-  
-//     span.innerText = response.data.qtd_msg;
-//     });
-  
-//   } catch (error) {
-//     console.log(error)
-//   }
-
-//   try {
-//     await axios.get('http://localhost:3000/usuario/contarUsuariosFelizes').then((response) => {
-
-//     const span = document.getElementById('usuarios_felizes');
-  
-//     span.innerText = response.data.qtd_msg;
-//     });
-  
-//   } catch (error) {
-//     console.log(error)
-//   }
-  
-// }
-
-
 
 
 const getPokemon = () =>{
@@ -84,7 +37,8 @@ const getPokemon = () =>{
         accumulator += `
           <li class="card ${types[0]}">
           <img class="card-image" alt="${pokemon.name}" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"
-          <h2 class="card-title">${pokemon.id}. ${pokemon.name} </h2>
+          <br>
+          <h3 class="card-title">${pokemon.id}. ${pokemon.name} </h3>
           <p class="class-subtitle">Type: ${types.join( ' | ')}</p>
           <p class="class-subtitle">Ability: ${ability.join( ' | ')}</p>
           <p class="class-subtitle">Skill Tree: ${moves}</p>
@@ -101,11 +55,5 @@ const getPokemon = () =>{
 
     })
   }
-// window.onload = carregaPaginaInicial; getPokemon;
-// window.onload = function(){
-//   // All code comes here 
-//   carregaPaginaInicial;
-//   getPokemon;
-// }
+
 getPokemon();
-// window.onload = carregaPaginaInicial;

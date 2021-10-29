@@ -8,10 +8,18 @@ exports.listarTodos = () =>
   exports.cadastrarLike = ({ like, data_like, idusuario, idthread }) =>
     db.Like.create({ like, data_like, idusuario, idthread });
 
-  exports.buscarLikePorThreadId = (idthread,like) => 
+  exports.buscarLikePorThreadId = (idthread) => 
     db.Like.count({
       where: {
         idthread,
-        like
+        like:1
+      }
+    });
+
+    exports.buscarDislikePorThreadId = (idthread) => 
+    db.Like.count({
+      where: {
+        idthread,
+        like:2
       }
     });

@@ -16,8 +16,12 @@ body {
 }
 
 .container {
-	padding: 40px;
+	padding: 10px;
 	margin: 0 auto;
+}
+
+.whos_pokemon {
+	font-size: 45px;
 }
 
 h1 {
@@ -26,6 +30,7 @@ h1 {
 }
 
 .pokedex {
+	background-color: transparent;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 	grid-gap: 20px;
@@ -121,7 +126,7 @@ h1 {
 .card-title {
 	text-transform: capitalize;
 	margin-bottom: 0px;
-	font-size: 32px;
+	/* font-size: 32px; */
 	font-weight: normal;
 	position: relative;
 	z-index: 2;

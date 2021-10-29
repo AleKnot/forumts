@@ -1,11 +1,13 @@
 var express = require('express');
 var router = express.Router();
-const moment= require('moment') 
+const moment= require('moment');
 const multer = require('multer');
 const threadsController = require('../Controller/thread-controller');
-const likeController = require('../Controller/like-controller')
-const comentarioController = require('../Controller/comentario-controller')
+const likeController = require('../Controller/like-controller');
+const comentarioController = require('../Controller/comentario-controller');
+const validarLogin = require('../Middleware/validar-login');
 
+router.use(validarLogin);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -30,26 +32,22 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 
-module.exports = function (req, res, next) {
-  if (req.session.usuario) {
-    next();
-  } else {
-    res.redirect("/");
-  }
-};
-
-
 router.get('/listar', async (req, res, next) => {
 
   // const threads = await threadsController.listarTodosComLike();
   const threads = await threadsController.listarTodos();
 
+  console.log(threads)
+
+  threads.forEach(element => {
+    const idthread = element.idthread
+    console.log(idthread)
+  });
+
   const message = ''
 
-  const likes = 1;
-  const dislikes =2;
 
-  res.render(".\\thread-view\\listar-threads",{message, threads,likes, dislikes})
+  res.render(".\\thread-view\\listar-threads",{message, threads})
 
 });
 
@@ -103,8 +101,10 @@ router.get('/like/:idthread', async (req, res) => {
 
   const message = 'Like Like Like That! idusuário: '+ idthread
 
-  res.redirect("/thread/listar")
+  // res.redirect("/thread/listar")
   // res.render(".\\thread-view\\listar-thread",{message})
+  res.redirect("/thread/comentarios/"+idthread)
+
   
 });
 
@@ -122,8 +122,7 @@ router.get('/dislike/:idthread', async (req, res) => {
 
   await likeController.cadastrarLike({like, data_like, idusuario, idthread});
 
-  const message = 'DisLike DisLike DisLike NOThat! idusuário: '+ idthread
-
+  
   res.redirect("/thread/listar")
   // res.render(".\\thread-view\\listar-thread",{message})
   
@@ -145,21 +144,13 @@ router.get('/comentarios/:idthread', async (req, res) => {
 
   const comentarios = await comentarioController.buscarComentarioPorThreadId(idthread);
 
-  const likes = await likeController.buscarLikePorThreadId(idthread,1);
+  const likes = await likeController.buscarLikePorThreadId(idthread);
 
   console.log('LIKES COUNT ____------>>>>>>> '+likes);
 
-  const dislikes = await likeController.buscarLikePorThreadId(idthread,2);
+  // console.log(threads)
 
-  console.log('LIKES COUNT ____------>>>>>>> '+dislikes);
-
-  
-  // threads.like = likes;
-
-  console.log(threads)
-
-
-  res.render(".\\thread-view\\thread-coment-thread",{message, threads,likes, dislikes,comentarios})
+  res.render(".\\thread-view\\thread-coment-thread",{message, threads,likes, comentarios})
 
 });
 
@@ -169,34 +160,21 @@ router.post('/comentarios/adicionar', async (req, res) => {
 
   const usuarioDaSessao = req.session;
   const idusuario = usuarioDaSessao.sessaoUsuario.idusuario;
-
-  console.log('entrou no comentários id da thred >>>> ' + idthread );
-
-  console.log('entrou no comentários e esse é o texto >>>> ' + texto );
-
+ 
   const message = ('entrou no comentários id da thred >>>> ' + idthread );
 
   const data_comentario = moment().format('YYYY-MM-DD hh:mm:ss');
 
-  // const idusuario = 1
-
   await comentarioController.cadastrarComentario({texto, data_comentario, idthread, idusuario})
-
-  // const threads = await threadsController.buscarThreadPorId(idthread);
-
-  // res.render(".\\thread-view\\thread-coment-thread",{message, threads})
-  // res.redirect("thread/comentarios/"+idthread)
-  // res.redirect("thread/comentarios/"+idthread)
-  res.redirect("/thread/listar")
-  // res.render("\\thread-view\\listar-thread\\")
-  // res.render(".\\thread-view\\thread-coment-thread\\"+idthread)
-
+  
+  // res.redirect("/thread/listar")
+  res.redirect("/thread/comentarios/"+idthread)
 
 });
 
 
 router.get('/contarComentarios', function(req, res, next) {
-  console.log('entrou no contar Thread Router Thread mtf')
+  console.log('entrou no contar Thread Router Thread mtf');
 
   try {
     const contarComentarios = comentarioController.contarTodosComentarios().then(ret_val => {
@@ -235,10 +213,30 @@ router.get('/contarThreads', function(req, res, next) {
       msg: "Erro na requisição tente novamente!",
     });
   }
-
  
 });
 
+router.get('/buscarlikedathread/:idhreads', function(req, res, next) {
+
+  const param = req.query.idthreadparam;
+  
+  try {
+    const qtdLikeThread = likeController.buscarLikePorThreadId(param).then(ret_val => {
+    
+    return res.status(200).json({
+      qtd_msg: ret_val
+    });
+  
+   });
+    
+  } catch (error) {
+    return res.status(400).json({
+      error: true,
+      msg: "Erro na requisição tente novamente!",
+    });
+  }
+ 
+});
 
 
 module.exports = router;

@@ -8,6 +8,9 @@ const bcryptjs = require("bcryptjs");
 
 const usuariosController = require('../Controller/usuario-controller');
 const loginController = require('../Controller/login-controller')
+const validarLogin = require('../Middleware/validar-login');
+
+router.use(validarLogin);
 
 
 const storage = multer.diskStorage({
@@ -43,8 +46,7 @@ router.get('/', function(req, res, next) {
 router.get('/listar', async (req, res, next) => {
   
   //pegar a sessão ativa do ususario
-  // req.session.sessaoUsuario = usuarioEncontrado;
-
+ 
   const usuarios = await usuariosController.listarTodos();
 
   const message = ''
@@ -56,7 +58,6 @@ router.get('/listar', async (req, res, next) => {
 router.get('/cadastrar', async (req, res, next) => {
   console.log('Cadastrar GET >>>>>>')
   
-  // res.render('usuario-view\\cadastrar-usuario',{editar:false,usuarios})
   res.render('usuario-view\\cadastrar-usuario')
 
 });
@@ -65,7 +66,6 @@ router.get('/cadastrar', async (req, res, next) => {
 
 /* POST cadastrar usuario listing. */
 router.post('/cadastrar', upload.single('foto') , async (req, res) => {
-
 
   let { nome, usuario, email, senha, data_nascimento} = req.body;
 
@@ -148,7 +148,6 @@ router.get('/deletar/:idusuario', async (req, res, next) => {
 
 // ------------------------------------------------------------------------------------------------------------------------
 
-
 router.post('/pesquisar', async (req, res, next) => {
 
   console.log('entrou no search +++++++')
@@ -180,9 +179,7 @@ router.get('/contarUsuariosFelizes', function(req, res, next) {
     return res.status(200).json({
       qtd_msg: ret_val
     });
-  
    });
-    
   } catch (error) {
     return res.status(400).json({
       error: true,
@@ -190,7 +187,6 @@ router.get('/contarUsuariosFelizes', function(req, res, next) {
     });
   }
 
- 
 });
 
 
