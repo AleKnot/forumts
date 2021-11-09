@@ -1,118 +1,175 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Cadastrar Thread</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Visualizar Thread</h1>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ForumTs - Visualizar Thread</title>
+
+    <!-- Custom fonts for this template-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="/stylesheets/boot/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <!-- Custom styles for this template-->
+    <link href="/stylesheets/boot/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+<br><br>
+<%- include('../partials/menu-logado.ejs') %>
+<br>
+<br>
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block">
+                        
+                      <img src="/images/rick_morty1.jpg" class="img-fluid rounded mx-auto d-block">
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Welcome - Visualizar Thread</h1>
+                                <% if (typeof message !== 'undefined') { %>
+                                  <h1> <%= message %></h1>
+                                  <% } %>
+                            </div>
+                            <% threads.forEach(thread => { %>
+                            <form class="user form-cadastro-usuario">
+
+                              <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item active">
+                                    <%=thread.titulo%>
+                                  </li>
+                                </ol>
+
+                                <ol class="breadcrumb text-center">
+                                  <li class="breadcrumb-item active">
+                                    <img src="/imagens/<%=thread.foto%>" >
+                                  </li>
+                                </ol>
+
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item active">
+                                    <%=thread.assunto%>
+                                  </li>
+                                </ol>
+
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item active">
+                                    <%=thread.descricao%>
+                                  </li>
+                                </ol>
+                              </nav>
+                                
+                              <button onclick="location.href='/thread/like/<%=thread.idthread%>'" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-thumbs-up"></i></button>
+                              <span class="badge badge-pill badge-success">
+                                <h5>LIKESSS Top: <%- likes%> </h5>
+                              </span>
+                              
+                            </form>
+                            
+
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="https://upload.wikimedia.org/wikipedia/pt/1/10/The_Chronicles_of_Narnia_-_The_Lion%2C_the_Witch_and_the_Wardrobe.jpg" target="_blank">Link para Narnia</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-5 d-none d-lg-block">
+
+                    <div class="p-5">
+
+                      <ul class="list-group" >
+                        <li class="list-group-item">
+                          <form action="/thread/comentarios/adicionar" method="POST">
+                            <span class="badge badge-pill badge-info">Adicionar Comentário -></span>
+                                                        
+                            <input type="hidden" name="idthread" id="idthread" value="<%=thread.idthread%>" disable>
+                            <br>
+                            <textarea name="texto" id="texto" cols="25" rows="5"></textarea>
+                          <br>
+                  
+                           
+                            <button type="submit" class="btn btn-success">Adicionar Comentário</button>
+                          </form>
+                          <% }) %>
+                        </li>
+                        
+                      </ul>
+                    
+                        
+
+                  </div>
+                </div>
+
+                  <div class="col-lg-7">
+                    <div class="p-5">
+
+                    
+
+                 
+                      <% comentarios.forEach(comentario => { %>
+
+
+                        <ul class="list-group" >
+                          <li class="list-group-item">
+                            Comentario: <%=comentario.texto%>
+                          </li>
+                          <li class="list-group-item">
+                            data comentario: <%=comentario.data_comentario%>
+                          </li>
+                          <li class="list-group-item">
+                            idusuario: <%=comentario.idusuario%>
+                          </li>
+                          <li class="list-group-item">
+                            idthread: <%=comentario.idthread%>
+                          </li>
+                          
+                        </ul>
+
+                       
+                        <br>
+                      <% }) %>
+                    </div>
+                  </div>
+                  
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+
+
+    <!-- Custom scripts for all pages-->
     
-    <%- include('../partials/menu-logado.ejs') %>
-
-      <% if (typeof usuario !== 'undefined') { %>
-        <h1> <%= usuario.nome %></h1>
-        <% } %>
-
-    <main>
-
-      <div>
-          <h1>Welcome - Visualizar Thread</h1>
-      </div>
-
-      <div>
-          <h2>Add a new comment to Thread</h2>
-      </div>
-
-      <% if (typeof message !== 'undefined') { %>
-        <h1> <%= message %></h1>
-        <% } %>
-
-      
-  <section class="container">
-
-    <br>
-
-      <div class="contato">
-        <% threads.forEach(thread => { %>
-      
-              <div class="form_fields">
-
-                  <label for="titulo">Titulo</label>
-                  <span><%=thread.titulo%></span>
-                  <br>
-                  <br>
-                  <img src="/imagens/<%=thread.foto%>">
-                  <br>
-                  <br>
-                  <label for="assunto">Assunto</label>
-                  <span><%=thread.assunto%></span>
-                  <br>
-                  <label for="descricao">Descrição</label>
-                  <span><%=thread.descricao%></span>
-                  <br>
-                  <br> 
-
-
-
-                  <a href="/thread/like/<%=thread.idthread%>">Like</a>
-                  <br>
-                  <h2>LIKESSS Top: <%- likes%> </h2>
-
-                  <hr><br>
-                  <br>
-              </div>
-
-      </div>
-
-      <div class="container">
-
-        <!-- exibir comentários aqui -->
-
-        <form action="/thread/comentarios/adicionar" method="POST">
-          <label for="idthread">Adicionar Comentário -></label>
-          <input type="hidden" name="idthread" id="idthread" value="<%=thread.idthread%>" disable>
-          <br>
-          <textarea name="texto" id="texto" cols="25" rows="5"></textarea>
-          <!-- <span><%=thread.idthread%></span> -->
-        <br>
-
-          <button type="submit">Adicionar Comentário</button>
-        </form>
-
-        <div id="allComments"></div>
-    </div>
-    <% }) %>
-      <br>
-      <br>
-      
-      <img id="output"/>
-
-      <br>
-      
-      <div>
-        <% comentarios.forEach(comentario => { %>
-          Comentario: <%=comentario.texto%><br>
-          data comentario: <%=comentario.data_comentario%><br>
-          <!-- idusuario: <%=comentario.idusuario%><br>
-          idthread: <%=comentario.idthread%><br> -->
-          
-          <br>
-          ---
-          <br>
-        <% }) %>
-    </div>
-
-  </body>
-
-  <script>
-    var loadFile = function(event) {
-      var output = document.getElementById('output');
-      output.src = URL.createObjectURL(event.target.files[0]);
-      output.onload = function() {
-        URL.revokeObjectURL(output.src) // free memory
-      }
-    };
-  </script>
-
+</body>
+<script src="/javascripts/script-cadastrar-usuario.js"></script>
 
 </html>

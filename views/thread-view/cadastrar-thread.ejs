@@ -1,92 +1,100 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Cadastrar Thread</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Cadastrar Thread</h1>
-    <p>Welcome to Cadastrar Thread</p>
+<html lang="en">
 
-    <%- include('../partials/menu-logado.ejs') %>
+<head>
 
-    <% if (typeof message !== 'undefined') { %>
-      <h1> <%= message %></h1>
-      <% } %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-      <% if (typeof usuario !== 'undefined') { %>
-        <h1> <%= usuario.nome %></h1>
-        <% } %>
+    <title>ForumTs - Cadastrar Thread</title>
 
-    <main>
+    <!-- Custom fonts for this template-->
+    <link href="/stylesheets/boot/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-      <div>
-          <h1>Welcome - Cadastrar Thread</h1>
-          <!-- <label for="">Bem vindo ao Nimix</label> -->
-      </div>
+    <!-- Custom styles for this template-->
+    <link href="/stylesheets/boot/sb-admin-2.min.css" rel="stylesheet">
 
-      <div>
-          <h2>Add a new Thread</h2>
-      </div>
+</head>
 
-      <% if (typeof message !== 'undefined') { %>
-        <h1> <%= message %></h1>
-        <% } %>
+<body class="bg-gradient-primary">
 
-      
-  <section class="container">
+    <div class="container">
+        <h1>Cadastrar Thread</h1>
+        <p>Welcome to Cadastrar Thread</p>
 
-    <br>
+        <br><br>
+<%- include('../partials/menu-logado.ejs') %>
+        <br>
+        <br>
 
-      <div class="contato">
-      
-        <form action="/thread/cadastrar" method="POST" encType="multipart/form-data">
-          
-              <div class="form_fields">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block">
+                      <img src="/images/rick_morty1.jpg" class="img-fluid">
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create a Thread!</h1>
+                            </div>
+                            <form class="user form-cadastro-usuario" action="/thread/cadastrar" method="POST" encType="multipart/form-data">
+                                
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" name="titulo" id="titulo" placeholder="Título">
+                                        <span class="error-message"></span>
+                                    </div>
 
-                  <label for="titulo">Titulo</label>
-                  <input type="text" name="titulo" id="titulo" value="">
-                  <br>
-                  <label for="assunto">Assunto</label>
-                  <input type="text" name="assunto" id="assunto" value="">
-                  <br>
-                  <label for="descricao">Descrição</label>
-                  <input type="text" name="descricao" id="descricao" value="">
-                  <br>
-                  <label for="foto">Select image:</label>
-                  <input type="file" id="img" name="foto" accept="image/*" onchange="loadFile(event)">
-                  <br>
-                  <br>
-                 
-              </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" name="assunto" id="assunto" placeholder="Assunto">
+                                            <span class="error-message"></span>
+                                    </div>
+                                
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" name="descricao" id="descricao" placeholder="Descricao">
+                                    <span class="error-message"></span>
+                                </div>
 
-              
-              <button class="button_login">Add Thread</button>
-              
-          </form>
-          
-      </div>
-      </div>
-      
-      <br>
-      <br>
-      
-      <img id="output"/>
+                               <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text">Select image:</span>
+                                    </div>
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="img" name="foto" accept="image/*" onchange="loadFile(event)">
+                                      <label class="custom-file-label" for="img">Choose file</label>
+                                    </div>
+                                  </div>
 
-      <br>
-      <br>
+                                  <div class="form-group">
+                                      <p>Imagem: </p>
+                                      <img id="output" class="rounded mx-auto d-block img-fluid"/>
+                                </div>
 
-  </body>
+                               <button type="submit" class="button_login btn btn-primary btn-user btn-block">Add Thread</button>
+                               
+                            </form>
 
-  <script>
-    var loadFile = function(event) {
-      var output = document.getElementById('output');
-      output.src = URL.createObjectURL(event.target.files[0]);
-      output.onload = function() {
-        URL.revokeObjectURL(output.src) // free memory
-      }
-    };
-  </script>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    </div>
+    
+</body>
+<script src="/javascripts/script-cadastrar-thread.js"></script>
 
 </html>

@@ -1,104 +1,122 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Cadastrar Usuário</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ForumTs - Cadastrar Usuário</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/stylesheets/boot/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-  </head>
-  <body>
-    <h1>Cadastrar Usuário</h1>
-    <p>Welcome to Cadastrar Usuário</p>
+    <!-- Custom styles for this template-->
+    <link href="/stylesheets/boot/sb-admin-2.min.css" rel="stylesheet">
 
-    <%- include('../partials/menu.ejs') %>
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+        <h1>Cadastrar Usuário</h1>
+        <p>Welcome to Cadastrar Usuário</p>
+
+        <br><br>
+<%- include('../partials/menu.ejs') %>
+        <br>
+        <br>
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block">
+                        
+                      <img src="/images/rick_morty1.jpg" class="img-fluid rounded mx-auto d-block">
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <form class="user form-cadastro-usuario" action="/usuario/cadastrar" method="POST" encType="multipart/form-data">
+                                
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" name="nome" id="nomeInputID" placeholder="First Name">
+                                        <span class="error-message"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" name="usuario" placeholder="Usuário">
+                                            <span class="error-message"></span>
+                                    </div>
+                                
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" name="email" placeholder="Email Address">
+                                    <span class="error-message"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="date" class="form-control form-control-user" name="data_nascimento">
+                                    <span class="error-message"></span>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text">Select image:</span>
+                                    </div>
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="img" name="foto" accept="image/*" onchange="loadFile(event)">
+                                      <label class="custom-file-label" for="img">Choose file</label>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <p>Imagem: </p>
+                                      <img id="output" class="rounded mx-auto d-block img-fluid"/>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="senha" placeholder="Password">
+                                        <span class="error-message"></span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" name="senha_repetir" placeholder="Repeat Password">
+                                        <span class="error-message"></span>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="button_login btn btn-primary btn-user btn-block">Add Usuer</button>
+                               
+                            </form>
+
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
 
 
-    <main>
-
-      <div>
-          <h1>Welcome - Cadastrar Usuário</h1>
-          <!-- <label for="">Bem vindo ao Nimix</label> -->
-      </div>
-
-      <div>
-          <h2>faça seu cadastro</h2>
-      </div>
-
-      
-  <section class="container">
-
-    <br>
-
-      <div class="contato">
-      
-        <form class="form-cadastro-usuario" action="/usuario/cadastrar" method="POST" encType="multipart/form-data">
-          
-              <div class="form_fields">
-
-                  <label for="nome">Nome</label>
-                  <input type="text" name="nome" id="nomeInputID">
-                  <span class="error-message"></span>
-                  <br>
-                  <label for="usuario">usuario</label>
-                  <input type="text" name="usuario">
-                  <span class="error-message"></span>
-                  <br>
-                  <label for="email">E-mail</label>
-                  <input type="email" name="email">
-                  <span class="error-message"></span>
-                  <br>
-                  <label for="dataNascimento">Data Nascimento</label>
-                  <input type="date" name="data_nascimento">
-                  <span class="error-message"></span>
-                  <br>
-                  <label for="foto">Select image:</label>
-                  <input type="file" id="img" name="foto" accept="image/*" onchange="loadFile(event)">
-                  <br>
-                  <label for="senha">Senha</label>
-                  <input type="password" name="senha">
-                  <span class="error-message"></span>
-                  <br>
-                  <label for="senha_repetir">Repertir Senha</label>
-                  <input type="password" name="senha_repetir">
-                  <span class="error-message"></span>
-                  <br>
-                  <br>
-                 
-              </div>
-              
-              
-              <button type="submit" class="button_login">Add Usuario</button>
-              
-          </form>
-          <ul class="errors-container"></ul>
-      </div>
-      </div>
-      
-      <br>
-      <br>
-      
-      <img id="output"/>
-
-      <br>
-      <br>
-
-      <div class="politica-senha">
-          <div class="politica-tamanho">
-              8 Characters
-          </div>
-          <div class="politica-numero">
-              Contém Número
-          </div>
-          <div class="politica-maiuscula">
-              Contém Letra Maiúscula
-          </div>
-          <div class="politica-especial">
-              Contém caracter especial
-          </div>
-      </div>
-
-  </body>
-  <script src="/javascripts/script-cadastrar-usuario.js"></script>
+    <!-- Custom scripts for all pages-->
+    
+</body>
+<script src="/javascripts/script-cadastrar-usuario.js"></script>
 
 </html>

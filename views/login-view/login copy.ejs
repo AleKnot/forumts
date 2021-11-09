@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Login</h1>
+    <p>Welcome to Login</p>
+
+    <%- include('../partials/menu.ejs') %>
+
+
+    <main>
+
+      <div>
+          <h2>faça seu login</h2>
+      </div>
+
+      <br>
+
+      <br>
+      <br>
+      <br>
+
+  <section class="container">
+    <% if (typeof message !== 'undefined') { %>
+      <h1> <%= message %></h1>
+      <% } %>
+      <div class="contato">
+          <form action="/login" method="post">
+              <div class="form_fields">
+                  <label for="usuario">Usuário</label>
+                  <input type="text" name="usuario" id="usuario">
+
+                  <label for="senha">Senha</label>
+                  <input type="password" name="senha" id="senha">
+              </div>
+              
+              <button class="button_login">Login</button>
+          </form>
+          <a href="#">Esqueceu a senha?</a>
+
+      </div>
+    
+  </body>
+</html>

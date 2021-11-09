@@ -122,7 +122,7 @@ function checkIfEmpty(input, errors) {
     span.innerText = "";
   
     if(!isSenhaWithinLimit){
-      senha.style.borderColor = "red";
+      // senha.style.borderColor = "red";
       span.innerText = 'O senha deve ter entre 2 e 80 caracteres!';
       senha.insertAdjacentElement('afterend', span);
       return false;
@@ -132,7 +132,7 @@ function checkIfEmpty(input, errors) {
     const teste = senha.value;
     
     if(teste.match(/[A-Z]{1,}/)){
-      senha.style.backgroundColor = "green";
+      senha.style.borderColor = "green";
       span.innerText = 'A senha contém letra maíuscula';
       senha.insertAdjacentElement('afterend', span);
    }else{
@@ -140,8 +140,6 @@ function checkIfEmpty(input, errors) {
     span.innerText = 'A senha NÂO contém letra maíuscula';
     senha.insertAdjacentElement('afterend', span);
    }
-
-    senha.style.borderColor = "green";
   
     return true;
   }
@@ -157,7 +155,7 @@ function checkIfEmpty(input, errors) {
     if( senha.value == senha_repetir.value ){
       console.log('entrou no true senha:' +senha.value + ' senha rep: ' + senha_repetir.value )
 
-      senha_repetir.style.backgroundColor = "green";
+      senha_repetir.style.borderColor = "green";
       span.innerText = 'Senhas Iguais parabéns';
       senha_repetir.insertAdjacentElement('afterend', span);
       return true;

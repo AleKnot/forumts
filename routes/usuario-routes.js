@@ -121,9 +121,15 @@ router.get('/editar/:idusuario', async (req, res, next) => {
   console.log(' postss ID USUARIO >>>  ' + idusuario);
 
   await usuariosController.atualizarUsuarioPorId({idusuario, nome, usuario, email, senha, data_nascimento, foto });
+
+  const usuarios = await usuariosController.listarTodos();
+
+  const message = 'Usuário atualizado com sucesso!!!'
   
   // res.render("usuario-view\\listar-usuario");
-  res.redirect("/usuario/listar");
+  // res.redirect("/usuario/listar");
+  res.render('usuario-view\\listar-usuarios', { message,usuarios })
+
 
 });
 
@@ -166,28 +172,12 @@ router.post('/pesquisar', async (req, res, next) => {
 
   res.render('usuario-view\\listar-usuarios', { message,usuarios })
   // res.render('usuario-view\\listar-usuario', {usuarios})
-  // res.redirect('usuario-view\\listar-usuario', {usuarios})
-  // res.redirect("/usuario/listar", {usuarios});
+  // res.redirect('usuario-view\\listar-usuarios', {usuarios})
+  // res.redirect("/usuario/listar", { message,usuarios });
 });
 
 
-router.get('/contarUsuariosFelizes', function(req, res, next) {
-  
-  try {
-    const contarUsuariosFelizes = usuariosController.contarUsuariosFelizes().then(ret_val => {
-    
-    return res.status(200).json({
-      qtd_msg: ret_val
-    });
-   });
-  } catch (error) {
-    return res.status(400).json({
-      error: true,
-      msg: "Erro na requisição tente novamente!",
-    });
-  }
 
-});
 
 
 module.exports = router;

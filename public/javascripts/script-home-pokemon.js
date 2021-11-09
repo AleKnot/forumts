@@ -35,15 +35,16 @@ const getPokemon = () =>{
         const moves = pokemon.moves.map(typeInfo => ' ' + typeInfo.move.name).toString();
         
         accumulator += `
-          <li class="card ${types[0]}">
-          <img class="card-image" alt="${pokemon.name}" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"
+          
+          <img class="card-img-top" style="width: 35%; alt="${pokemon.name}" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"
           <br>
-          <h3 class="card-title">${pokemon.id}. ${pokemon.name} </h3>
+          <p class="card-title">${pokemon.id}. ${pokemon.name} </p>
+          
           <p class="class-subtitle">Type: ${types.join( ' | ')}</p>
           <p class="class-subtitle">Ability: ${ability.join( ' | ')}</p>
           <p class="class-subtitle">Skill Tree: ${moves}</p>
 
-          </li>
+          
           
           `
         return accumulator

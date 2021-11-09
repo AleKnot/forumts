@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Listar Thread's</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ForumTs - Listar Thread</title>
+
+    <!-- Custom fonts for this template-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="/stylesheets/boot/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <!-- Custom styles for this template-->
+    <link href="/stylesheets/boot/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+  <body class="bg-gradient-primary">
+    
+    <div class="container">
 
     <h1>Listar Thread</h1>
     <p>Welcome to Listar Thread</p>
-
+    <br>
+    <br>
     <%- include('../partials/menu-logado.ejs') %>
 
       <% if (message) { %>
       <h2><%=message%></h2>
       <% } %>
 
-
-
-  <div>
-    <% threads.forEach(thread => { %>
-
-      <div class="card">
       
-        <div class="card__cover">
-            <h1>Titulo: <%=thread.titulo%><br></h1>
-            
-        </div>
 
-        <div class="card__content">
+      
+
+  
+    <% threads.forEach(thread => { %>
+      
+      
+      <div class="card text-center o-hidden shadow-lg my-5 p-0 d-sm-flex">
+        <div class="col d-flex">
+        <div class="card-body">
+      
+          <h5 class="card-title"><%=thread.titulo%></h5>
+
+
+        <div class="card-text">
           <img src="/imagens/<%=thread.foto%>">
           <br>
             id da Thread mtf: <%=thread.idthread%><br>
@@ -38,23 +62,19 @@
             <pre>LIKES: <%=thread.likes%></pre>   
 
             <img id="output"/>
-
+            
+          <button onclick="location.href='/thread/like/<%=thread.idthread%>'" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-thumbs-up"></i></button>
+          <button onclick="location.href='/thread/comentarios/<%=thread.idthread%>'" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-comments"></i></button>
+      
         </div>
         
     </div>
-
-    <pre><%=JSON.stringify(threads,null,2)%></pre>
+  </div>
+  </div>
       
-      <br> 
-      <a href="/thread/like/<%=thread.idthread%>">Like</a>
-      <br>
-      <a href="/thread/comentarios/<%=thread.idthread%>">Comentários</a>
-      <br>
-
-      <hr>
-      <br>
     <% }) %>
+    
+  </div>
 </div>
-
   </body>
 </html>

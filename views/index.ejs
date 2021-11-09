@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
  
  
   <script src="/javascripts/script-home.js"></script>
   <script src="/javascripts/script-home-pokemon.js"></script>
     
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link href="/stylesheets/boot/all.min.css" rel="stylesheet" type="text/css">
+  <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+    
+   
+  <!-- Custom styles for this template-->
+  <link href="/stylesheets/boot/sb-admin-2.min.css" rel="stylesheet">
   </head>
-  <body>
+  <body id="page-top">
+
+
+
 
     <h1>ForumTs - Página inicial</h1>
     <%- include('./partials/menu.ejs') %>
@@ -18,35 +31,103 @@
       <h1> <%= message %></h1>
       <% } %>
 
-      <% if (typeof usuario !== 'undefined') { %>
+      <!-- <% if (typeof usuario !== 'undefined') { %>
         <h1> <%= usuario.nome %></h1>
-        <% } %>
+        <% } %> -->
+
+                            <!-- Page Heading -->
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                              <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                              <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                      class="fas fa-download fa-sm text-white-50"></i> Esse botão não faz nada</a>
+                          </div>
+      
+                          <!-- Content Row -->
+                          <div class="row justify-content-center">
+                            
+                              
+                              <div class="col-xl-3 col-md-6 mb-4">
+                                  <div class="card border-left-primary shadow h-100 py-2">
+                                      <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                              <div class="col mr-2">
+                                                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Total de MSG
+                                                  </div>
+                                                  <div id="qtd_msg" class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <span id="qtd_msg"></span> 
+                                                  </div>
+                                              </div>
+                                              <div class="col-auto">
+                                                  <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+      
+                              
+                              <div class="col-xl-3 col-md-6 mb-4">
+                                  <div class="card border-left-success shadow h-100 py-2">
+                                      <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                              <div class="col mr-2">
+                                                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                      Usuários Felizes</div>
+                                                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <span id="usuarios_felizes"></span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-auto">
+                                                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              
+                              <div class="col-xl-3 col-md-6 mb-4">
+                                  <div class="card border-left-warning shadow h-100 py-2">
+                                      <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                              <div class="col mr-2">
+                                                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                      Todos os Posts</div>
+                                                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <span id="threads_rolando"></span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-auto">
+                                                  <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+
+                              <div class="card w-75 text-center">
+                                <div class="card-body">
+                                  <h5 class="card-title">who's that pokemon</h5>
+                                  <p class="card-text" data-js="pokedex">
+                                    
+                      
+                                  </p>
+                                  
+                                </div>
+                              </div>
+
+
+                          </div>
+        
 
         <br>
-        <br>
-        <br>
-        <label for="qtd_msg">Quantidade de MSG</label>
-        <span id="qtd_msg"></span> 
-        <br>
-        <br>
-        <br>
-        <label for="qtd_msg">Usuários Felizes</label>
-        <span id="usuarios_felizes"></span>
-        <br>
-        <br>
-        <br>
-        <label for="qtd_posts">Quatidade de Posts</label>
-        <span id="threads_rolando"></span>
+        <hr>
 
-        <br>
+        
 
-        <div class="container">
-          <div class="whos_pokemon">who's that pokemon</div>
-          <ul data-js="pokedex" class="pokedex"></ul>
-          <br>
-        </div>
-
-
+                    
   </body>
 
 </html>

@@ -1,13 +1,8 @@
-// import express from 'express';
-// window.setTimeout(function () {
-//   window.location.reload();
-// }, 5000);
-
 async function carregaPaginaInicial(){
 
 
   try {
-    await axios.get('http://localhost:3000/thread/contarComentarios').then((response) => {
+    await axios.get('http://localhost:3000/home/contarComentarios').then((response) => {
 
     const span = document.getElementById('qtd_msg');
   
@@ -19,7 +14,7 @@ async function carregaPaginaInicial(){
   }
 
   try {
-    await axios.get('http://localhost:3000/thread/contarThreads').then((response) => {
+    await axios.get('http://localhost:3000/home/contarThreads').then((response) => {
 
     const span = document.getElementById('threads_rolando');
   
@@ -31,7 +26,7 @@ async function carregaPaginaInicial(){
   }
 
   try {
-    await axios.get('http://localhost:3000/usuario/contarUsuariosFelizes').then((response) => {
+    await axios.get('http://localhost:3000/home/contarUsuariosFelizes').then((response) => {
 
     const span = document.getElementById('usuarios_felizes');
   

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cadastrar Thread</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Visualizar Thread</h1>
+    
+    <%- include('../partials/menu-logado.ejs') %>
+
+      <% if (typeof usuario !== 'undefined') { %>
+        <h1> <%= usuario.nome %></h1>
+        <% } %>
+
+    <main>
+
+      <div>
+          <h1>Welcome - Visualizar Thread</h1>
+      </div>
+
+      <div>
+          <h2>Add a new comment to Thread</h2>
+      </div>
+
+      <% if (typeof message !== 'undefined') { %>
+        <h1> <%= message %></h1>
+        <% } %>
+
+      
+  <section class="container">
+
+    <br>
+
+      <div class="contato">
+        <% threads.forEach(thread => { %>
+      
+              <div class="form_fields">
+
+                  <label for="titulo">Titulo</label>
+                  <span><%=thread.titulo%></span>
+                  <br>
+                  <br>
+                  <img src="/imagens/<%=thread.foto%>">
+                  <br>
+                  <br>
+                  <label for="assunto">Assunto</label>
+                  <span><%=thread.assunto%></span>
+                  <br>
+                  <label for="descricao">Descrição</label>
+                  <span><%=thread.descricao%></span>
+                  <br>
+                  <br> 
+
+
+
+                  <a href="/thread/like/<%=thread.idthread%>">Like</a>
+                  <br>
+                  <h2>LIKESSS Top: <%- likes%> </h2>
+
+                  <hr><br>
+                  <br>
+              </div>
+
+      </div>
+
+      <div class="container">
+
+        <!-- exibir comentários aqui -->
+
+        <form action="/thread/comentarios/adicionar" method="POST">
+          <label for="idthread">Adicionar Comentário -></label>
+          <input type="hidden" name="idthread" id="idthread" value="<%=thread.idthread%>" disable>
+          <br>
+          <textarea name="texto" id="texto" cols="25" rows="5"></textarea>
+        <br>
+
+          <button type="submit">Adicionar Comentário</button>
+        </form>
+
+        <div id="allComments"></div>
+    </div>
+    <% }) %>
+      <br>
+      <br>
+      
+      <img id="output"/>
+
+      <br>
+      
+      <div>
+        <% comentarios.forEach(comentario => { %>
+          Comentario: <%=comentario.texto%><br>
+          data comentario: <%=comentario.data_comentario%><br>
+          <!-- idusuario: <%=comentario.idusuario%><br>
+          idthread: <%=comentario.idthread%><br> -->
+          
+          <br>
+          ---
+          <br>
+        <% }) %>
+    </div>
+
+  </body>
+
+  <script>
+    var loadFile = function(event) {
+      var output = document.getElementById('output');
+      output.src = URL.createObjectURL(event.target.files[0]);
+      output.onload = function() {
+        URL.revokeObjectURL(output.src) // free memory
+      }
+    };
+  </script>
+
+
+</html>
